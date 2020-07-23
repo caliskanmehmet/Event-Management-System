@@ -1,0 +1,43 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/.ignore/
+!**/src/main/react-app/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.mvn
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+/src/main/react-app/
+/src/main/.ignore/
+/src/main/Backend 22.07.2020 (Everything except security).zip
+/src/main/package.json
+/src/main/Project Backend 21.07.2020.zip
+/src/main/yarn.lock
+/src/main/java/com/yte/intern/project/manageemployee/
