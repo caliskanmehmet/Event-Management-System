@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.yte.intern.project.common.entity.BaseEntity;
 import com.yte.intern.project.manageclients.entity.Client;
-import com.yte.intern.project.manageemployee.entity.Employee;
 import com.yte.intern.project.manageevents.entity.Event;
 import lombok.Getter;
 import lombok.Setter;

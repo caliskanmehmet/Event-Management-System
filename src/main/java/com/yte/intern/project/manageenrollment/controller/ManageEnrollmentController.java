@@ -2,8 +2,6 @@ package com.yte.intern.project.manageenrollment.controller;
 
 import com.yte.intern.project.manageclients.entity.Client;
 import com.yte.intern.project.manageclients.service.ManageClientService;
-import com.yte.intern.project.manageemployee.entity.Employee;
-import com.yte.intern.project.manageemployee.service.ManageEmployeeService;
 import com.yte.intern.project.manageenrollment.entity.Enrollment;
 import com.yte.intern.project.manageenrollment.service.ManageEnrollmentService;
 import com.yte.intern.project.manageevents.entity.Event;
@@ -36,21 +34,17 @@ public class ManageEnrollmentController {
         //System.out.println("Enrollment client is:" + client);
         Event event = manageEventService.findByEventKey(eventKey);
 
-        event.setQuota(event.getQuota() - 1);
+        if ( manageEnrollmentService.findByEventAndClient(event, client) == null ) {
 
-        //if (event != null && client != null) {
+            event.setQuota(event.getQuota() - 1);
 
-        //}
-        //employee.getEnrollments().add(enrollment);
-        //event.getEnrollments().add(enrollment);
+            enrollment.setClient(client);
+            enrollment.setEvent(event);
 
-        //manageEmployeeService.addEmployee(employee);
-        //manageEventService.addEvent(event);
+            return manageEnrollmentService.addEnrollment(enrollment);
+        }
 
-        enrollment.setClient(client);
-        enrollment.setEvent(event);
-
-        return manageEnrollmentService.addEnrollment(enrollment);
+        return null;
     }
 
     @GetMapping("/enroll/{username}/{eventKey}")

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.yte.intern.project.common.entity.BaseEntity;
-import com.yte.intern.project.manageemployee.entity.Employee;
 import com.yte.intern.project.manageenrollment.entity.Enrollment;
 import lombok.Getter;
 import lombok.Setter;
