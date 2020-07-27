@@ -16,8 +16,10 @@ public class RoleService {
 
     @PostConstruct
     public void insertRoles() {
-        roleRepository.save(new Role(ERole.ROLE_USER));
-        roleRepository.save(new Role(ERole.ROLE_MODERATOR));
-        roleRepository.save(new Role(ERole.ROLE_ADMIN));
+        if ( !roleRepository.findByName(ERole.ROLE_USER).isPresent() ) {
+            roleRepository.save(new Role(ERole.ROLE_USER));
+            roleRepository.save(new Role(ERole.ROLE_MODERATOR));
+            roleRepository.save(new Role(ERole.ROLE_ADMIN));
+        }
     }
 }

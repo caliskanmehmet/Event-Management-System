@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,10 +29,10 @@ public class Event extends BaseEntity {
     private String title;
 
     @Column(name = "BEGINNING_DATE")
-    private LocalDateTime beginningTime;
+    private ZonedDateTime beginningTime;
 
     @Column(name = "END_DATE")
-    private LocalDateTime endingTime;
+    private ZonedDateTime endingTime;
 
     @Column(name = "EVENT_KEY", unique = true) // this key will be written by user
     private String eventKey;

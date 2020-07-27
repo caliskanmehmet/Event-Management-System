@@ -30,6 +30,12 @@ public class ManageClientController {
         return clientMapper.mapToDto(clients);
     }
 
+    @GetMapping("/clients/{username}")
+    public ClientDTO getClient(@PathVariable String username) {
+        Optional<Client> client = manageClientService.findByUsername(username);
+        return clientMapper.mapToDto(client.get());
+    }
+
     @PostMapping("/clients") // @Valid eklendi :)
     public Client addClient(@Valid @RequestBody ClientDTO clientDTO) {
         Client client = clientMapper.mapToEntity(clientDTO);

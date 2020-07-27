@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Getter
@@ -14,11 +15,9 @@ public class EventDTO {
     @Size(min = 3, max = 100, message="Geçersiz etkinlik adı!")
     private String title;
 
-    @FutureOrPresent(message = "Başlangıç tarihi bugün veya daha sonra olmalı!")
-    private LocalDateTime beginningTime;
+    private ZonedDateTime beginningTime;
 
-    @AssertTrue(message = "Bitiş tarihi, başlangıç tarihinden sonra olmalı!")
-    private LocalDateTime endingTime;
+    private ZonedDateTime endingTime;
 
     @Size(min = 8, max = 8, message="Etkinlik anahtarı 8 karakterden oluşmalı!")
     private String eventKey;
@@ -29,7 +28,15 @@ public class EventDTO {
     @NotNull
     private List<String> questions;
 
+    @AssertTrue(message = "Bitiş tarihi, başlangıç tarihinden sonra olmalı!")
     private boolean isEndingTimeValid() {
         return (endingTime.isAfter(beginningTime));
+    }
+
+    @AssertTrue(message = "Başlangıç tarihi, şimdiden sonra olmalı!")
+    private boolean isBeginningTimeValid() {
+        System.out.println("beginning time" + beginningTime );
+        System.out.println("now" + ZonedDateTime.now());
+        return (beginningTime.isAfter(ZonedDateTime.now()));
     }
 }
