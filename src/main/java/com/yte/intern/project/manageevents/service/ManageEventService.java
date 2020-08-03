@@ -28,4 +28,8 @@ public class ManageEventService {
 
     public void deleteByEventKey(String eventKey) { eventRepository.deleteByEventKey(eventKey);
     }
+
+    public boolean existsByEventKey(String eventKey) {
+        return eventRepository.existsByEventKey(eventKey);
+    }
 }

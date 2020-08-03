@@ -2,6 +2,7 @@ package com.yte.intern.project.manageevents.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
@@ -28,6 +29,9 @@ public class EventDTO {
     @NotNull
     private List<String> questions;
 
+    @Value("0")
+    private int participantCount;
+
     @AssertTrue(message = "Bitiş tarihi, başlangıç tarihinden sonra olmalı!")
     private boolean isEndingTimeValid() {
         return (endingTime.isAfter(beginningTime));
@@ -35,8 +39,6 @@ public class EventDTO {
 
     @AssertTrue(message = "Başlangıç tarihi, şimdiden sonra olmalı!")
     private boolean isBeginningTimeValid() {
-        System.out.println("beginning time" + beginningTime );
-        System.out.println("now" + ZonedDateTime.now());
         return (beginningTime.isAfter(ZonedDateTime.now()));
     }
 }

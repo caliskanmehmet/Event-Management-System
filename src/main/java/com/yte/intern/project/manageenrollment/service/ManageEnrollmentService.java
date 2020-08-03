@@ -5,8 +5,10 @@ import com.yte.intern.project.manageenrollment.entity.Enrollment;
 import com.yte.intern.project.manageenrollment.repository.EnrollmentRepository;
 import com.yte.intern.project.manageevents.entity.Event;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -34,6 +36,14 @@ public class ManageEnrollmentService {
 
     public Enrollment findByEventAndClient(Event event, Client client) {
         return enrollmentRepository.findByEventAndClient(event, client);
+    }
+
+    public Integer countAllByEnrollmentDate(LocalDate date) {
+        return enrollmentRepository.countAllByEnrollmentDate(date);
+    }
+
+    public List<Enrollment> getAll() {
+        return enrollmentRepository.findAll(Sort.by("enrollmentDate"));
     }
 
 }

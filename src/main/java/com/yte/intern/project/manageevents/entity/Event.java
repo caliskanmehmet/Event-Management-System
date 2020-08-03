@@ -40,19 +40,14 @@ public class Event extends BaseEntity {
     @Column(name = "QUOTA")
     private int quota;
 
+    @Column(name = "PARTICIPANT_COUNT")
+    private int participantCount;
+
     @Column(name = "QUESTIONS")
     @ElementCollection
     private List<String> questions = new ArrayList<>();
 
-    //@Column(name = "ANSWERS") ((not sure about this??))
-    //@ElementCollection
-    //private Set<String> answers = new HashSet<>();
-
     @OneToMany(mappedBy = "event", cascade=CascadeType.ALL, orphanRemoval=true)
     //@JsonIgnore
     Set<Enrollment> enrollments = new HashSet<>();
-
-
-    //@ManyToMany(mappedBy = "enrolledEvents", cascade = { CascadeType.ALL })
-    //Set<Client> enrolledEmployees = new HashSet<>();
 }

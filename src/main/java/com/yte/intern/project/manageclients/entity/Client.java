@@ -30,8 +30,9 @@ public class Client extends BaseEntity/* implements UserDetails*/ {
     @Column(name = "SURNAME")
     private String surname;
 
-    @NotBlank //ToDo unique
+    @NotBlank
     @Size(max = 20)
+    @Column(name = "USERNAME", unique = true)
     private String username;
 
     @NotBlank

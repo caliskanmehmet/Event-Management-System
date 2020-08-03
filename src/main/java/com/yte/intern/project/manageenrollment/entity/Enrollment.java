@@ -12,6 +12,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +40,7 @@ public class Enrollment extends BaseEntity {
     @Column(name = "answers")
     List<String> answerForm = new ArrayList<>();
 
-    // ToDo --> database'de event_answers tablosu var. neden?
+    @Column(name = "enrollmentDate")
+    private LocalDate enrollmentDate;
+
 }

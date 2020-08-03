@@ -15,4 +15,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     void deleteByEventKey(String eventKey);
 
     List<Event> findAll(Sort sort);
+
+    boolean existsByEventKey(String eventKey);
 }
