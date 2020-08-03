@@ -1,2 +1,2 @@
 # EMS-Backend
-Event Management System Backend
+Event Management System Backend written with Spring Framework
