@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
 public class ManageClientController {
 
@@ -29,6 +28,12 @@ public class ManageClientController {
     public List<ClientDTO> listAllClients() {
         List<Client> clients = manageClientService.getAllClients();
         return clientMapper.mapToDto(clients);
+    }
+
+    @GetMapping("/clients/{username}")
+    public ClientDTO getClient(@PathVariable String username) {
+        Optional<Client> client = manageClientService.findByUsername(username);
+        return clientMapper.mapToDto(client.get());
     }
 
     @PostMapping("/clients") // @Valid eklendi :)
@@ -46,13 +51,15 @@ public class ManageClientController {
     }
 
     @GetMapping("/clients/{username}/events")
-    public Set<EventDTO> getClientEvents(@PathVariable String username) {
-        Set<EventDTO> events = new HashSet<>();
+    public List<EventDTO> getClientEvents(@PathVariable String username) {
+        List<EventDTO> events = new ArrayList<>();
 
         Client client = manageClientService.findByUsername(username).get();
         Set<Enrollment> enrollments = client.getEnrollments();
 
         enrollments.forEach( (e) ->events.add(eventMapper.mapToDto(e.getEvent())));
+
+        Collections.sort(events, Comparator.comparing(EventDTO::getBeginningTime));
 
         return events;
     }

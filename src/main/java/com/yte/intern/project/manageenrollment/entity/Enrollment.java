@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.yte.intern.project.common.entity.BaseEntity;
 import com.yte.intern.project.manageclients.entity.Client;
-import com.yte.intern.project.manageemployee.entity.Employee;
 import com.yte.intern.project.manageevents.entity.Event;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,5 +40,7 @@ public class Enrollment extends BaseEntity {
     @Column(name = "answers")
     List<String> answerForm = new ArrayList<>();
 
-    // ToDo --> database'de event_answers tablosu var. neden?
+    @Column(name = "enrollmentDate")
+    private LocalDate enrollmentDate;
+
 }

@@ -79,18 +79,24 @@ public class AuthController {
         if (clientRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+                    .body(new MessageResponse("Error: Kullanıcı adı zaten bulunuyor!"));
         }
 
         if (clientRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body(new MessageResponse("Error: Email zaten kullanımda!"));
+        }
+
+        if (clientRepository.existsByTcKimlikNo(signUpRequest.getTcKimlikNo())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: TC Kimlik No zaten kullanımda!"));
         }
 
         // Create new user's account
         Client client = new Client(signUpRequest.getName(), signUpRequest.getSurname(),
-                signUpRequest.getUsername(), // ToDo add tckimlikno, name, surname to this
+                signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()), signUpRequest.getTcKimlikNo());
 
